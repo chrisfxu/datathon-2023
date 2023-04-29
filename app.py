@@ -1,5 +1,5 @@
 import streamlit as st
-from stub import predict
+from models.stub_model import StubModel
 
 
 st.set_page_config(layout='wide')
@@ -18,6 +18,12 @@ with form:
     weeks_since_checkup = st.number_input('Weeks since last checkup', step=1)
     lung_capacity = st.number_input('Lung capacity at last checkup (mL)')
 
+@st.cache_resource
+def get_model():
+    return StubModel()
+
+model = get_model()
+
 with results:
     '### Will your lungs be fine?'
-    st.write(predict(age, gender == 'Man', smoking_status == 'Yes', weeks_since_scan, weeks_since_checkup, lung_capacity))
+    st.write(model.predict(age, gender == 'Man', smoking_status == 'Yes', weeks_since_scan, weeks_since_checkup, lung_capacity))
