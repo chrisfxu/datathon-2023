@@ -11,4 +11,6 @@ pip install -r requirements.txt
 Download images into `data/images/`. The `train.csv` is already included within the repo.
 
 ## Run Streamlit App
-(TODO)
+```bash
+streamlit run app
+```
