@@ -6,7 +6,7 @@ st.set_page_config(layout='wide')
 st.title('Lung Function Forecaster :lungs:')
 st.subheader('by Ken\'s Chiemps :monkey:', )
 
-form, results = st.columns([1, 2])
+form, results, surf = st.columns([1, 2, 1])
 
 with form:
     '### Answer these questions...'
@@ -27,3 +27,6 @@ model = get_model()
 with results:
     '### Will your lungs be fine?'
     st.write(model.predict(age, gender == 'Man', smoking_status == 'Yes', weeks_since_scan, weeks_since_checkup, lung_capacity))
+
+with surf:
+    st.markdown("![Alt Text](https://media.tenor.com/1wZ88hrB5SwAAAAd/subway-surfer.gif)")
