@@ -17,9 +17,9 @@ with form:
     gender = st.radio('Sex', ['Man', 'Woman'])
     smoking_status = st.radio('Do you smoke? :smoking:', ['Yes', 'No'])
     ct_scan = st.file_uploader('CT scan of lungs', type=['png', 'jpg'])
-    weeks_since_scan = st.number_input('Weeks since CT scan', step=1)
-    lung_capacity = st.number_input('Lung capacity at last checkup (mL)')
-    percent_capacity = st.number_input('Lung capacity at last checkup (%)', 0, 100)
+    weeks_since_scan = st.number_input('Weeks since CT scan', step=1, value=2)
+    lung_capacity = st.number_input('Lung capacity at last checkup (mL)', value=2720)
+    percent_capacity = st.number_input('Lung capacity at last checkup (%)', 0, 100, value=60)
 
 @st.cache_resource
 def get_model():
