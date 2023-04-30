@@ -46,7 +46,8 @@ with results:
     # plt.plot(ages_projected, Y)
     plt.xlabel('Age (years)')
     plt.ylabel('Projected Lung Capacity (mL)')
-    st.pyplot(plt)
+    if ct_scan:
+        st.pyplot(plt)
 
 with surf:
     #st.markdown(r"![Doctors Hate This One Simple Trick!](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.RkJFdQILTedyGsDtxLQq6gAAAA%26pid%3DApi&f=1&ipt=443df8bcabc60c25c19a73158b7031be13a4008845ef4ee2d4973afe9197c6c6&ipo=images)")
