@@ -1,5 +1,5 @@
 import streamlit as st
-from models.stub_model import StubModel
+from models.rf_regressor_model import RandomForestRegressorModel
 
 
 st.set_page_config(layout='wide')
@@ -20,15 +20,15 @@ with form:
 
 @st.cache_resource
 def get_model():
-    return StubModel()
+    return RandomForestRegressorModel()
 
 model = get_model()
 
 with results:
     '### Will your lungs be fine?'
-    st.write(model.predict(age, gender == 'Man', smoking_status == 'Yes', weeks_since_scan, weeks_since_checkup, lung_capacity))
+    st.write(model.predict(age, gender == 'Man', smoking_status == 'Yes', weeks_since_scan, weeks_since_checkup, lung_capacity)[0])
 
 with surf:
-    st.markdown("![Doctors Hate This One Simple Trick!](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.RkJFdQILTedyGsDtxLQq6gAAAA%26pid%3DApi&f=1&ipt=443df8bcabc60c25c19a73158b7031be13a4008845ef4ee2d4973afe9197c6c6&ipo=images)")
-    st.markdown("![Hot Singles In Your Area](https://i1.sndcdn.com/artworks-PyA0dgP4Tz0yv7zz-Fx2Qlg-t240x240.jpg)")
-    st.markdown("![Subway Surf](https://media.tenor.com/1wZ88hrB5SwAAAAd/subway-surfer.gif)")
+    st.markdown(r"![Doctors Hate This One Simple Trick!](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.RkJFdQILTedyGsDtxLQq6gAAAA%26pid%3DApi&f=1&ipt=443df8bcabc60c25c19a73158b7031be13a4008845ef4ee2d4973afe9197c6c6&ipo=images)")
+    st.markdown(r"![Hot Singles In Your Area](https://i1.sndcdn.com/artworks-PyA0dgP4Tz0yv7zz-Fx2Qlg-t240x240.jpg)")
+    st.markdown(r"![Subway Surf](https://media.tenor.com/1wZ88hrB5SwAAAAd/subway-surfer.gif)")
