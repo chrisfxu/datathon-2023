@@ -16,7 +16,7 @@ with form:
     age = st.number_input('Age', min_value=18, max_value=122, step=1)
     gender = st.radio('Sex', ['Man', 'Woman'])
     smoking_status = st.radio('Do you smoke? :smoking:', ['Yes', 'No'])
-    ct_scan = st.file_uploader('CT scan of lungs', type=['png', 'jpg'])
+    ct_scan = st.file_uploader('CT scan of lungs')
     weeks_since_scan = st.number_input('Weeks since CT scan', step=1, value=2)
     lung_capacity = st.number_input('Lung capacity at last checkup (mL)', value=2720)
     percent_capacity = st.number_input('Lung capacity at last checkup (%)', 0, 100, value=60)
