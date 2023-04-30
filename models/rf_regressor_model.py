@@ -23,7 +23,7 @@ class RandomForestRegressorModel(BaseModel):
         X['Sex'] = X['Sex'] == "Male"
         X['SmokingStatus'] = X['SmokingStatus'] == "Ex-smoker"
         regressor = RandomForestRegressor(n_estimators=100, random_state=0)
-        regressor.fit(X, y)
+        regressor.fit(X.values, y.values)
 
         with open(self.trained_model_filename, 'wb') as f:
             pickle.dump(regressor, f)
