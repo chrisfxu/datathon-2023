@@ -28,7 +28,7 @@ class RandomForestRegressorModel(BaseModel):
         with open(self.trained_model_filename, 'wb') as f:
             pickle.dump(regressor, f)
     
-    def predict(_self, age: int, is_male: bool, does_smoke: bool, weeks_since_scan: int, weeks_since_checkup: int, lung_capacity: float):
+    def predict(_self, age: int, is_male: bool, does_smoke: bool, weeks_since_scan: int, lung_capacity: float):
         return _self.model.predict([[weeks_since_scan, lung_capacity, age, is_male, does_smoke]])
 
 
