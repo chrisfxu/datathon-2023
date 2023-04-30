@@ -16,20 +16,31 @@ class RandomForestRegressorModel(BaseModel):
             self.model = pickle.load(f)
 
     def train_and_store_model(self) -> RandomForestRegressor:
-        train = pd.read_csv(self.train_data_path)
+
+        train = pd.read_csv('data/train.csv')
+        train['FVCLag'] = train.FVC.shift(1)
+        train['PercentLag'] = train.Percent.shift(1)
+
+        uq = set()
+
+        for index, row in train.iterrows():
+            if row['Patient'] not in uq:
+                uq.add(row['Patient'])
+                train.drop(index, axis=0, inplace=True)
+
         y = train["FVC"]
         X = train.copy()
-        X = X.drop(columns = ["FVC", "Patient"])
-        X['Sex'] = X['Sex'] == "Male"
-        X['SmokingStatus'] = X['SmokingStatus'] == "Ex-smoker"
-        regressor = RandomForestRegressor(n_estimators=100, random_state=0)
+        X=X.drop(columns = ["FVC", "Patient", "Percent"])
+        X['Sex'] = X['Sex'].map(lambda x: 1 if(x == "Male") else 0 )
+        X['SmokingStatus'] = X['SmokingStatus'].map(lambda x: 1 if(x == "Ex-smoker") else 0 )
+        regressor = RandomForestRegressor(n_estimators=250, random_state=0)
         regressor.fit(X.values, y.values)
 
         with open(self.trained_model_filename, 'wb') as f:
             pickle.dump(regressor, f)
     
-    def predict(_self, age: int, is_male: bool, does_smoke: bool, weeks_since_scan: int, lung_capacity: float):
-        return _self.model.predict([[weeks_since_scan, lung_capacity, age, is_male, does_smoke]])
+    def predict(_self, age: int, is_male: bool, does_smoke: bool, weeks_since_scan: int, capacity_lag: float, percent_lag: float):
+        return _self.model.predict([[weeks_since_scan, age, is_male, does_smoke, capacity_lag, percent_lag]])
 
 
 if __name__ == '__main__':
