@@ -12,5 +12,5 @@ Download images into `data/images/`. The `train.csv` is already included within 
 
 ## Run Streamlit App
 ```bash
-streamlit run app
+streamlit run app.py
 ```
